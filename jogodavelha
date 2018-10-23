@@ -1,0 +1,441 @@
+
+
+int joga_computador(char tab[3][3]) {
+
+	char aux1, aux2, aux3;
+
+	int i, j;
+
+	//tabuleiro(tab);
+
+    
+    // ele vai tentar inserir no meio do tabuleiro
+	aux1 = tab[1][1];
+
+	if (aux1 == ' ') {#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <time.h>//necessário p/ função time()
+
+
+
+void tabuleiro(char casas[3][3]) {
+
+	printf("\t  %c | %c | %c\n", casas[0][0], casas[0][1], casas[0][2]);
+
+	printf("\t --- --- ---\n");
+
+	printf("\t  %c | %c | %c\n", casas[1][0], casas[1][1], casas[1][2]);
+
+	printf("\t --- --- ---\n");
+
+	printf("\t  %c | %c | %c\n", casas[2][0], casas[2][1], casas[2][2]);
+
+
+
+} // imprimir o tabuleiro,funcao que declara a matriz,mostrar o valor de X,O ou espaco//
+
+
+
+		tab[1][1] = 'O';
+
+		return 0;
+
+	}
+
+	
+
+	char jogador; // só para representar X ou O, só para verificação, porque sua matriz está em char
+
+	for (j = 2; j >= 1; j--) { // primeira interação, tenta ganhar o jogo, segunda, evita que o outro ganhe  
+
+
+
+		if (j == 2) {
+
+			jogador = 'O';
+
+		}
+
+		else {
+
+			jogador = 'X';
+
+		}
+
+		
+
+		for (i = 0; i < 3; i++) { ////vai percorrer as 3 linhas e as 3 colunas
+
+            // Percorre as casas de uma linha
+
+			aux1 = tab[0][i];// guardando as casas
+
+			aux2 = tab[1][i];//
+
+			aux3 = tab[2][i]; //
+
+
+
+			if ((aux1 == aux3) && (aux2 == ' ') && (aux1 == jogador)) {// 1. verificar as casas,para tentar ganhar e 
+//na2evita 
+
+				tab[1][i] = 'O';
+
+				return 0;
+
+			}
+
+
+
+			else if ((aux1 == aux2) && (aux3 == ' ') && (aux1 == jogador)) {
+
+				tab[2][i] = 'O';
+
+				return 0;
+
+			}
+
+
+
+			else if ((aux2 == aux3) && (aux1 == ' ') && (aux2 == jogador)) {
+
+				tab[0][i] = 'O';
+
+				return 0;
+
+			}
+
+			// Acaca de a linha ------------------------------------------------------------------------
+
+			 // Percorre as casas de uma coluna
+
+			aux1 = tab[i][0];
+
+			aux2 = tab[i][1];
+
+			aux3 = tab[i][2];
+
+			if ((aux1 == aux3) && (aux2 == ' ') && (aux1 == jogador)) {
+
+				tab[i][1] = 'O';
+
+				return 0;
+
+			}
+
+			else if ((aux1 == aux2) && (aux3 == ' ') && (aux1 == jogador)) {
+
+				tab[i][2] = 'O';
+
+				return 0;
+
+
+
+			}
+
+			else if ((aux2 == aux3) && (aux1 == ' ') && (aux2 == jogador)) {
+
+				tab[i][0] = 'O';
+
+				return 0;
+
+
+
+			}
+
+			//  verificação acaba aqui-------------------------------------------------------------------
+
+		} // finaliza o for(que tenta ganhar ou que evita)
+
+
+
+		/* Diagonal Principal */
+
+		aux1 = tab[0][0];
+
+		aux2 = tab[1][1];
+
+		aux3 = tab[2][2];
+
+		if ((aux1 == aux3) && (aux2 == ' ') && (aux1 == jogador)) {
+
+			tab[1][1] = 'O';
+
+			return 0;
+
+		}
+
+		else if ((aux1 == aux2) && (aux3 == ' ') && (aux1 == jogador)) {
+
+			tab[2][2] = 'O';
+
+			return 0;
+
+
+
+		}
+
+		else if ((aux2 == aux3) && (aux1 == ' ') && (aux2 == jogador)) {
+
+			tab[0][0] = 'O';
+
+			return 0;
+
+		}
+
+        // aqui finaliza diagonal principal
+
+		/* Diagonal Secundaria */
+
+		aux1 = tab[2][0];
+
+		aux2 = tab[1][1];
+
+		aux3 = tab[0][2];
+
+		if ((aux1 == aux3) && (aux2 == ' ') && (aux1 == jogador)) {
+
+			tab[1][1] = 'O';
+
+			return 0;
+
+
+
+		}
+
+		else if ((aux1 == aux2) && (aux3 == ' ') && (aux1 == jogador)) {
+
+			tab[0][2] = 'O';
+
+			return 0;
+
+
+
+		}
+
+		else if ((aux2 == aux3) && (aux1 == ' ') && (aux2 == jogador)) {
+
+			tab[2][0] = 'O';
+
+			return 0;
+
+		}
+
+	}
+
+	int linha, coluna;
+
+    // percorre o tabuleiro até encontrar a primeira posição vazia e ocupa
+    for(linha = 0;linha < 3;linha++){
+        for(coluna = 0; coluna < 3; coluna++){
+            if(tab[linha][coluna] == ' '){
+                tab[linha][coluna] = 'O';
+                return 0;
+            }
+        }
+    }
+
+}
+
+
+int verificaTabuleiro(char casas[3][3]) {//funcao p verificar o tabu
+
+	int ganhou = 0;// 
+
+
+
+	if ((casas[0][0] == 'X' && casas[0][1] == 'X' && casas[0][2] == 'X') ||
+
+		(casas[1][0] == 'X' && casas[1][1] == 'X' && casas[1][2] == 'X') ||
+
+		(casas[2][0] == 'X' && casas[2][1] == 'X' && casas[2][2] == 'X') ||
+
+		(casas[0][0] == 'X' && casas[1][0] == 'X' && casas[2][0] == 'X') ||
+
+		(casas[0][1] == 'X' && casas[1][1] == 'X' && casas[2][1] == 'X') ||
+
+		(casas[0][2] == 'X' && casas[1][2] == 'X' && casas[2][2] == 'X') ||
+
+		(casas[0][0] == 'X' && casas[1][1] == 'X' && casas[2][2] == 'X') ||
+
+		(casas[0][2] == 'X' && casas[1][1] == 'X' && casas[2][0] == 'X'))
+
+	{
+
+		ganhou = 1;// testar as maneiras possiveis de x
+
+	}
+
+	else if ((casas[0][0] == 'O' && casas[0][1] == 'O' && casas[0][2] == 'O') ||
+
+		(casas[1][0] == 'O' && casas[1][1] == 'O' && casas[1][2] == 'O') ||
+
+		(casas[2][0] == 'O' && casas[2][1] == 'O' && casas[2][2] == 'O') ||
+
+		(casas[0][0] == 'O' && casas[1][0] == 'O' && casas[2][0] == 'O') ||
+
+		(casas[0][1] == 'O' && casas[1][1] == 'O' && casas[2][1] == 'O') ||
+
+		(casas[0][2] == 'O' && casas[1][2] == 'O' && casas[2][2] == 'O') ||
+
+		(casas[0][0] == 'O' && casas[1][1] == 'O' && casas[2][2] == 'O') ||
+
+		(casas[0][2] == 'O' && casas[1][1] == 'O' && casas[2][0] == 'O'))
+
+	{
+
+		ganhou = 1;
+
+	}// testat todas as maneiras de imprimir 'o'
+
+	return ganhou;// retorna quem ganhou//
+
+}
+
+
+
+int mudaJogador(int j) {//mudar o jogador
+
+	if (j == 1) {//j=1, vc ta jogando
+
+		return 2;// retorna 2, que eh o outro jogador
+
+	}
+
+	else {//muda p o proximo jogador
+
+		return 1;
+
+	}
+
+}
+
+
+
+int main()// funcao principal
+
+{
+
+	int novoJogo = 1; // novo jogador recebe 1, se ele n receber n vai entrar no while, p ficar diferente de 0//
+
+
+
+	while (novoJogo != 0) {// enquanto tiver diferente de 0, vai continuar rodando
+
+
+
+		char casas[3][3] =
+
+		{
+
+			{ ' ', ' ', ' ' },
+
+		{ ' ', ' ', ' ' },
+
+		{ ' ', ' ', ' ' },
+
+		};// impressao do tabuleiro vazia
+
+
+
+		int i = 0, x, y, jogador = 1;
+
+
+
+		do {// delimitar o tanto de jogadas// 
+
+			system("cls");// limpa a tela
+
+			printf("\tJogo da Velha\n\n");// imprimir a mensagem
+
+			tabuleiro(casas);// chama a função para mostrar o tabuleiro 
+
+			printf("\n\n");
+
+			if (jogador == 2) {//
+
+				joga_computador(casas);
+
+			}
+
+			else {
+
+            int flag = 0;// Vai persistir no while enquanto os valores forem inválidos
+            
+            do{
+                printf("\tUsuario 0%d\n", jogador);
+
+				printf("\tDigite linha: ");
+
+				scanf("%d", &x);
+
+				printf("\tDigite coluna: ");
+
+				scanf("%d", &y);
+
+				printf("\n\n");
+                
+                if(x > 3 || x < 1 || y > 3 || y < 1){
+                    printf("Valor invalidos, tente novamente \n \n \n \n");
+                }else{
+                    if (jogador == 1) {//jogador 1= x//
+
+						casas[x - 1][y - 1] = 'X';
+
+					}
+                    flag = 1;
+                }
+                
+                
+            }while (flag == 0);
+                
+				
+
+			}
+
+			if (verificaTabuleiro(casas) == 1) {// armazenamos ganhou =1 e perdeu = 0 // se for igual 1= 
+//ganhou//
+
+				printf("\tJogador 0%d Venceu!\n", jogador);//carregar a mensagem de quem ganhou//
+
+				tabuleiro(casas);//chama a funcao p imprimir
+
+				break;// parar a funcao 
+
+			}
+
+
+
+			jogador = mudaJogador(jogador);// troca jogador 
+
+			i++;// incrementar o numero de jogadas// 
+
+            printf("%d", i);
+
+
+
+			if (i == 9) {// se for= 9 ,empatada// testar a jogada// 
+
+				printf("\n\tJogo Ficou Empatado\n");
+
+			}
+
+		} while (i < 9);// se for menor que 9, alguem ganha//
+
+
+
+		printf("\nJogar Novamente.1 \n Sair.0\t");// imprime a mensagem 
+
+		scanf("%d", &novoJogo);// digitar o que quer fazer na mensagem acima//
+
+		system("clear");// limpa a tela;; 
+
+	}
+
+
+
+	return 0;
+
+}
